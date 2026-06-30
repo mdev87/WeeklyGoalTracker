@@ -8,6 +8,28 @@ use Illuminate\Database\Eloquent\Attributes\WithoutTimestamps;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * @property int $id
+ * @property int $duration_minutes
+ * @property string $date
+ * @property string|null $note
+ * @property int $goal_id
+ * @property int $user_id
+ * @property-read Goal $goal
+ *
+ * @method static \Database\Factories\TimeLogFactory factory($count = null, $state = [])
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|TimeLog newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|TimeLog newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|TimeLog query()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|TimeLog whereDate($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|TimeLog whereDurationMinutes($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|TimeLog whereGoalId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|TimeLog whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|TimeLog whereNote($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|TimeLog whereUserId($value)
+ *
+ * @mixin \Eloquent
+ */
 #[Fillable(['duration_minutes', 'date', 'note', 'goal_id'])]
 #[WithoutTimestamps]
 class TimeLog extends Model
