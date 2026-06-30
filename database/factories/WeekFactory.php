@@ -19,7 +19,7 @@ class WeekFactory extends Factory
     public function definition(): array
     {
         return [
-            'available_minutes' => fake()->randomElement([
+            'planned_minutes' => fake()->randomElement([
                 60,
                 90,
                 120,
@@ -30,7 +30,9 @@ class WeekFactory extends Factory
                 720,
                 900,
             ]),
-            'week_start_date' => now()->startOfWeek()->format('Y-m-d'),
+            'week_start_date' => jdate()
+                ->getFirstDayOfWeek()
+                ->format('Y-m-d'),
             'user_id' => User::inRandomOrder()->first()->id,
         ];
     }

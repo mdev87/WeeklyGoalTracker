@@ -8,22 +8,16 @@ use Illuminate\Database\Eloquent\Attributes\WithoutTimestamps;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-#[Fillable('available_minutes', 'week_start_date', 'user_id')]
+#[Fillable('planned_minutes', 'week_start_date', 'user_id')]
 #[WithoutTimestamps]
 class Week extends Model
 {
     /** @use HasFactory<WeekFactory> */
     use HasFactory;
 
-    /**
-     * Get the attributes that should be cast.
-     *
-     * @return array<string, string>
-     */
-    protected function casts(): array
+    #[Scope]
+    protected function thisWeek(Builder $query)
     {
-        return [
-            'week_start_date' => 'datetime:Y-m-d',
-        ];
+        $query->where('week_start_date', jdate()->getFirstDayOfWeek()->format('Y-m-d'));
     }
 }

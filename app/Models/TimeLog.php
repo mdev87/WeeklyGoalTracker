@@ -15,15 +15,8 @@ class TimeLog extends Model
     /** @use HasFactory<TimeLogFactory> */
     use HasFactory;
 
-    /**
-     * Get the attributes that should be cast.
-     *
-     * @return array<string, string>
-     */
-    protected function casts(): array
+    public function goal()
     {
-        return [
-            'date' => 'datetime:Y-m-d',
-        ];
+        return $this->belongsTo(Goal::class);
     }
 }

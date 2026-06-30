@@ -24,18 +24,19 @@ class DatabaseSeeder extends Seeder
                 Week::factory(5)
                     ->state(new Sequence(fn (Sequence $sequence) => [
                         'user_id' => $user->id,
-                        'week_start_date' => now()
-                            ->startOfWeek()
-                            ->subWeeks($sequence->index)
+                        'week_start_date' => jdate()
+                            ->getFirstDayOfWeek()
+                            ->subDays(7 * $sequence->index)
                             ->format('Y-m-d'),
                     ]))
                     ->create()
                     ->each(function ($week) use ($user) {
                         Goal::factory(3)->state([
                             'user_id' => $user->id,
-                        ])->create()->each(function ($goal) {
+                        ])->create()->each(function ($goal) use ($user) {
                             TimeLog::factory(7)->state([
                                 'goal_id' => $goal->id,
+                                'user_id' => $user->id,
                             ])->create();
                         });
                     });

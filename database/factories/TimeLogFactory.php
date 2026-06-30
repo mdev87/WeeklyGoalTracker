@@ -4,7 +4,9 @@ namespace Database\Factories;
 
 use App\Models\Goal;
 use App\Models\TimeLog;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Morilog\Jalali\Jalalian;
 
 /**
  * @extends Factory<TimeLog>
@@ -18,9 +20,13 @@ class TimeLogFactory extends Factory
      */
     public function definition(): array
     {
+        $userId = User::inRandomOrder()->first()->id;
+
         return [
             'duration_minutes' => fake()->numberBetween(5, 180),
-            'date' => fake()->dateTimeBetween('-6 days', 'now'),
+            'date' => Jalalian::fromDateTime(
+                fake()->dateTimeBetween('-6 days', 'now')
+            )->format('Y-m-d'),
             'note' => fake()->optional()->randomElement([
                 'امروز روی بخش اصلی پروژه کار کردم',
                 'مطالعه و تمرین انجام شد',
@@ -33,7 +39,8 @@ class TimeLogFactory extends Factory
                 'تمرین امروز مفید بود',
                 'روی جزئیات بیشتر کار کردم',
             ]),
-            'goal_id' => Goal::inRandomOrder()->first()->id,
+            'goal_id' => Goal::where('user_id', $userId)->inRandomOrder()->first()->id,
+            'user_id' => $userId,
         ];
     }
 }

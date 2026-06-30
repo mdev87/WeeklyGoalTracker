@@ -14,7 +14,7 @@ return new class extends Migration
     {
         Schema::create('weeks', function (Blueprint $table) {
             $table->id();
-            $table->integer('available_minutes');
+            $table->integer('planned_minutes');
             $table->date('week_start_date');
             $table->foreignIdFor(User::class)->constrained()->cascadeOnDelete()->cascadeOnUpdate();
 
