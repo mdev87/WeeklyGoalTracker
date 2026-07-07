@@ -16,6 +16,7 @@
         "morilog/jalali": "3.*"
     },
     "require-dev": {
+        "ace-of-aces/intellipest": "^1.0",
         "barryvdh/laravel-ide-helper": "^3.7",
         "fakerphp/faker": "^1.23",
         "laravel/boost": "^2.2",
