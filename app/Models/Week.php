@@ -21,8 +21,8 @@ use Illuminate\Database\Eloquent\Model;
  * @method static Builder<static>|Week newQuery()
  * @method static Builder<static>|Week query()
  * @method static Builder<static>|Week thisWeek()
- * @method static Builder<static>|Week whereAvailableMinutes($value)
  * @method static Builder<static>|Week whereId($value)
+ * @method static Builder<static>|Week wherePlannedMinutes($value)
  * @method static Builder<static>|Week whereUserId($value)
  * @method static Builder<static>|Week whereWeekStartDate($value)
  *

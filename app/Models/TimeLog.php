@@ -2,8 +2,10 @@
 
 namespace App\Models;
 
+use App\Observers\TimeLogObserver;
 use Database\Factories\TimeLogFactory;
 use Illuminate\Database\Eloquent\Attributes\Fillable;
+use Illuminate\Database\Eloquent\Attributes\ObservedBy;
 use Illuminate\Database\Eloquent\Attributes\WithoutTimestamps;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -30,8 +32,9 @@ use Illuminate\Database\Eloquent\Model;
  *
  * @mixin \Eloquent
  */
-#[Fillable(['duration_minutes', 'date', 'note', 'goal_id'])]
+#[Fillable(['duration_minutes', 'date', 'note', 'goal_id', 'user_id'])]
 #[WithoutTimestamps]
+#[ObservedBy([TimeLogObserver::class])]
 class TimeLog extends Model
 {
     /** @use HasFactory<TimeLogFactory> */
