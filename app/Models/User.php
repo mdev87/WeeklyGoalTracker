@@ -23,10 +23,17 @@ use Laravel\Sanctum\PersonalAccessToken;
  * @property string|null $remember_token
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
+ * @property-read Collection<int, Goal> $goals
+ * @property-read int|null $goals_count
  * @property-read DatabaseNotificationCollection<int, DatabaseNotification> $notifications
  * @property-read int|null $notifications_count
+ * @property-read UserActivityStreak|null $streak
+ * @property-read Collection<int, TimeLog> $timeLogs
+ * @property-read int|null $time_logs_count
  * @property-read Collection<int, PersonalAccessToken> $tokens
  * @property-read int|null $tokens_count
+ * @property-read Collection<int, Week> $weeks
+ * @property-read int|null $weeks_count
  *
  * @method static \Database\Factories\UserFactory factory($count = null, $state = [])
  * @method static \Illuminate\Database\Eloquent\Builder<static>|User newModelQuery()
@@ -68,5 +75,15 @@ class User extends Authenticatable
     public function goals()
     {
         return $this->hasMany(Goal::class);
+    }
+
+    public function streak()
+    {
+        return $this->hasOne(UserActivityStreak::class);
+    }
+
+    public function weeks()
+    {
+        return $this->hasMany(Week::class);
     }
 }

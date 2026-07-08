@@ -14,4 +14,14 @@ class WeekRepository
             'week_start_date' => jdate()->getFirstDayOfWeek()->format('Y-m-d'),
         ], ['planned_minutes' => $defaultPlannedMinutes]);
     }
+
+    public function getWeeksCountThisYear(User $user): int
+    {
+        return $user->weeks()
+            ->whereBetween('week_start_date', [
+                jdate()->getFirstDayOfYear()->format('Y-m-d'),
+                jdate()->getEndDayOfYear()->format('Y-m-d'),
+            ])
+            ->count();
+    }
 }
