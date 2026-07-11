@@ -39,7 +39,7 @@ class TimeLogFactory extends Factory
                 'تمرین امروز مفید بود',
                 'روی جزئیات بیشتر کار کردم',
             ]),
-            'goal_id' => Goal::where('user_id', $userId)->inRandomOrder()->first()->id,
+            'goal_id' => Goal::factory()->create()->id,
             'user_id' => $userId,
         ];
     }
