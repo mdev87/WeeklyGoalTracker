@@ -21,6 +21,10 @@ class GoalResource extends JsonResource
             'name' => $this->whenHas('name'),
             'color' => $this->whenHas('color'),
             'priorityPercentage' => $this->whenHas('priority_percentage'),
+            'plannedMinutes' => $this->whenHas('planned_minutes'),
+            'spentMinutes' => $this->whenHas('spent_minutes'),
+            'remainingMinutes' => $this->whenHas('remaining_minutes'),
+            'completionPercentage' => $this->whenHas('completion_percentage'),
         ];
     }
 }

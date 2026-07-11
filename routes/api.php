@@ -4,6 +4,7 @@ use App\Http\Controllers\Api\V1\ActivityOverviewController;
 use App\Http\Controllers\Api\V1\AnalysisController;
 use App\Http\Controllers\Api\V1\AuthController;
 use App\Http\Controllers\Api\V1\DashboardController;
+use App\Http\Controllers\Api\V1\GoalController;
 use App\Http\Controllers\Api\V1\TimeLogController;
 use Illuminate\Support\Facades\Route;
 
@@ -22,5 +23,8 @@ Route::prefix('/v1')->group(function () {
         Route::apiResource('/time-logs', TimeLogController::class)
             ->except('index', 'show');
         Route::get('/time-logs/today', [TimeLogController::class, 'today']);
+
+        Route::apiResource('/goals', GoalController::class)
+            ->except('show');
     });
 });

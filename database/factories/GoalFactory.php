@@ -44,7 +44,7 @@ class GoalFactory extends Factory
                 'cyan',
             ]),
             'priority_percentage' => fake()->numberBetween(10, 100),
-            'user_id' => User::inRandomOrder()->first()->id,
+            'user_id' => User::factory()->create()->id,
         ];
     }
 }
