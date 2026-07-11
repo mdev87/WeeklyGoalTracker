@@ -6,6 +6,7 @@ use App\Http\Controllers\Api\V1\AuthController;
 use App\Http\Controllers\Api\V1\DashboardController;
 use App\Http\Controllers\Api\V1\GoalController;
 use App\Http\Controllers\Api\V1\TimeLogController;
+use App\Http\Controllers\Api\V1\WeekController;
 use Illuminate\Support\Facades\Route;
 
 Route::prefix('/v1')->group(function () {
@@ -26,5 +27,7 @@ Route::prefix('/v1')->group(function () {
 
         Route::apiResource('/goals', GoalController::class)
             ->except('show');
+
+        Route::patch('/weeks/current', [WeekController::class, 'updateCurrent']);
     });
 });
