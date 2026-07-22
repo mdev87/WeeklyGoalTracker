@@ -12,7 +12,16 @@ class WeekRepository
         return Week::firstOrCreate([
             'user_id' => $user->id,
             'week_start_date' => jdate()->getFirstDayOfWeek()->format('Y-m-d'),
-        ], ['planned_minutes' => $defaultPlannedMinutes]);
+        ], [
+            'planned_minutes' => $defaultPlannedMinutes,
+        ]);
+    }
+
+    public function getPreviousWeek(User $user): ?Week
+    {
+        return $user->weeks()
+            ->where('week_start_date', jdate()->getFirstDayOfWeek()->subDays(7)->format('Y-m-d'))
+            ->first();
     }
 
     public function getWeeksCountThisYear(User $user): int

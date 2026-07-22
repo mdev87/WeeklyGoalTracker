@@ -28,4 +28,20 @@ class TimeLogRepository
             ->groupBy('date')
             ->get(['date', DB::raw('COUNT(*) as count')]);
     }
+
+    public function getSpentMinutes(User $user, string $start, string $end): int
+    {
+        return (int) $user->timeLogs()
+            ->whereBetween('date', [$start, $end])
+            ->sum('duration_minutes');
+    }
+
+    public function getSpentMinutesByGoal(User $user, string $start, string $end)
+    {
+        return $user->timeLogs()
+            ->whereBetween('date', [$start, $end])
+            ->selectRaw('goal_id, SUM(duration_minutes) as spent_minutes')
+            ->groupBy('goal_id')
+            ->pluck('spent_minutes', 'goal_id');
+    }
 }

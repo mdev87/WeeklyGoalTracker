@@ -16,9 +16,9 @@ class AnalysisController extends Controller
      */
     public function __invoke(Request $request, AnalysisService $analysisService)
     {
-        $analysis = $analysisService->analyze();
+        $analysis = $analysisService->analyze($request->user());
 
-        return [
+        return response()->json([
             'weekSummary' => $analysis->weekSummary,
             'info' => Arr::map([
                 'strongestGoal' => $analysis->strongestGoal,
@@ -37,6 +37,6 @@ class AnalysisController extends Controller
                 'thisWeekSpentMinutes' => $compareItem->thisWeekSpentMinutes,
                 'differenceMinutes' => $compareItem->differenceMinutes,
             ]),
-        ];
+        ], options: JSON_UNESCAPED_UNICODE);
     }
 }

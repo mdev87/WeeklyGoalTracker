@@ -38,7 +38,7 @@ class DashboardController extends Controller
                         'completionPercentage' => $g->completionPercentage,
                     ]),
                 ],
-                'logs' => $todayLogs->map(fn (TimeLogData $t) => [
+                'todayLogs' => $todayLogs->map(fn (TimeLogData $t) => [
                     'id' => $t->id,
                     'durationMinutes' => $t->durationMinutes,
                     'goal' => [
